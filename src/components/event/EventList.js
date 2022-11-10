@@ -6,8 +6,7 @@ import "./EventList.css"
 export const EventList = (props) => {
     const [ events, setEvents ] = useState([])
     const navigate = useNavigate();
-    const { eventId } = useParams()
-
+    
     useEffect(() => {
         getEvents().then(data => setEvents(data))
     }, [])
