@@ -59,3 +59,15 @@ export const updateGameDetails = (game) => {
     })
         //.then(response => response.json()) is not used when returning None and a status code on the server side.
 }
+
+export const deleteGame = (id) => {
+    return fetch(`http://localhost:8000/games/${id}`, {
+        method: "DELETE",
+        headers:{
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        }
+        })
+}
+
