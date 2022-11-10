@@ -42,5 +42,5 @@ export const updateEventDetails = (event) => {
         },
         body: JSON.stringify(event)
     })
-        .then(response => response.json())
+        //.then(response => response.json()) is not used when returning None and a status code on the server side.
 }

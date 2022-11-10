@@ -41,7 +41,7 @@ export const EventEdit = () => {
 
     return (
         <form className="gameForm">
-            <h2 className="gameForm__title">Register New Game</h2>
+            <h2 className="gameForm__title">Update this Event</h2>
         <fieldset>
             <div className="form-group">
                 <label htmlFor="event">Select the Game to be played:  </label>

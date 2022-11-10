@@ -10,8 +10,8 @@ export const getGames = () => {
         .then(response => response.json())
 }
 
-export const getSingleGame = () => {
-    return fetch("http://localhost:8000/games/${game.id}", {
+export const getSingleGame = (id) => {
+    return fetch(`http://localhost:8000/games/${id}`, {
         method: "GET",
         headers:{
             "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export const getGameTypes = () => {
 }
 
 export const updateGameDetails = (game) => {
-    return fetch("http://localhost:8000/events/${game.id}", {
+    return fetch(`http://localhost:8000/games/${game.id}`, {
         method: "PUT",
         headers:{
             "Content-Type": "application/json",
@@ -57,5 +57,5 @@ export const updateGameDetails = (game) => {
         },
         body: JSON.stringify(game)
     })
-        .then(response => response.json())
+        //.then(response => response.json()) is not used when returning None and a status code on the server side.
 }
