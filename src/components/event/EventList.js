@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { deleteEvent, getEvents } from "../../managers/EventManager.js"
+import { deleteEvent, getEvents, joinEvent, leaveEvent } from "../../managers/EventManager.js"
 import "./EventList.css"
 
 export const EventList = (props) => {
     const [ events, setEvents ] = useState([])
     const navigate = useNavigate();
+    
+    const joinButton = (eventId) => {
+        joinEvent(eventId).then(() => getEvents()).then(data => setEvents(data))
+
+    }
+
+    const leaveButton = (eventId) => {
+        leaveEvent(eventId).then(() => getEvents()).then(data => setEvents(data))
+
+    }
     
     const updateEventList = () => {
         getEvents().then(data => setEvents(data))
@@ -14,6 +24,7 @@ export const EventList = (props) => {
     useEffect(() => {
         updateEventList()
     }, [])
+
 
     return (
         <>
@@ -38,6 +49,11 @@ export const EventList = (props) => {
                             onClick={() => {
                                 deleteEvent(event.id).then(() => updateEventList())
                             }}>Delete this Event</button>
+
+                    {!event.joined
+                        ? <button className="button_join" onClick={() => {joinButton(event.id)}}>JOIN</button>
+                        : <button className="button_leave" onClick={() => {leaveButton(event.id)}}>LEAVE</button>
+                    }                  
                     </>
                 })
             }
